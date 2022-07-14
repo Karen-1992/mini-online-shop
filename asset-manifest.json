@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/mini-online-shop/static/css/main.e21112d8.css",
+    "main.js": "/mini-online-shop/static/js/main.b8f95e2c.js",
+    "index.html": "/mini-online-shop/index.html",
+    "main.e21112d8.css.map": "/mini-online-shop/static/css/main.e21112d8.css.map",
+    "main.b8f95e2c.js.map": "/mini-online-shop/static/js/main.b8f95e2c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e21112d8.css",
+    "static/js/main.b8f95e2c.js"
+  ]
+}
