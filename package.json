@@ -1,4 +1,5 @@
 {
+    "homepage": "http://Karen-1992.github.io/mini-online-shop",
     "name": "mini-online-shop",
     "version": "0.1.0",
     "private": true,
@@ -52,6 +53,7 @@
         "eslint-plugin-import": "^2.26.0",
         "eslint-plugin-n": "^15.2.4",
         "eslint-plugin-promise": "^6.0.0",
-        "eslint-plugin-react": "^7.30.1"
+        "eslint-plugin-react": "^7.30.1",
+        "gh-pages": "^4.0.0"
     }
 }
