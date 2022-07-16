@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { changeQuantity, getQuantityById } from "../../store/cart";
 
-const TextField = ({ label, type, name, id }) => {
+const TextField = ({ label, type, name, id, quantity }) => {
     const initialValue = useSelector(getQuantityById(id));
-    const [quantity, setQuantity] = useState(initialValue);
+    const [quantity2, setQuantity] = useState(initialValue);
     const dispatch = useDispatch();
     const handleChange = ({ target }) => {
         const { value } = target;
@@ -14,6 +14,9 @@ const TextField = ({ label, type, name, id }) => {
         setQuantity(value);
         dispatch(changeQuantity({ quantity: newValue, id }));
     };
+    useEffect(() => {
+        setQuantity(quantity);
+    }, [quantity]);
     return (
         <div className="d-flex flex-column justify-content-center">
             <label htmlFor={name}>{label}</label>
@@ -22,7 +25,7 @@ const TextField = ({ label, type, name, id }) => {
                     type={type}
                     id={name}
                     name={name}
-                    value={quantity}
+                    value={quantity2}
                     onChange={handleChange}
                     className="form-control form-control-sm"
                 />
@@ -37,6 +40,7 @@ TextField.propTypes = {
     label: PropTypes.string,
     type: PropTypes.string,
     name: PropTypes.string,
+    quantity: PropTypes.number,
     id: PropTypes.string
 };
 

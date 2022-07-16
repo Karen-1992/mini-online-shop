@@ -53,11 +53,7 @@ const cartSlice = createSlice({
             const index = state.entities.findIndex(
                 (p) => p.ID === action.payload.id
             );
-            if (action.payload.quantity !== 0) {
-                state.entities[index].quantity = action.payload.quantity;
-            } else {
-                state.entities[index].quantity = 1;
-            }
+            state.entities[index].quantity = action.payload.quantity;
             localStorageService.setCartItems(state.entities);
         },
         cartToggled: (state) => {

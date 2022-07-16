@@ -33,6 +33,7 @@ const CartProductsTable = ({
                     name="quantity"
                     type="number"
                     id={product.ID}
+                    quantity={product.quantity}
                 />
             )
         },
