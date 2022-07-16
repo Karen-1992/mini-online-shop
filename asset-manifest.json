@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/mini-online-shop/static/css/main.e21112d8.css",
-    "main.js": "/mini-online-shop/static/js/main.99d56924.js",
+    "main.js": "/mini-online-shop/static/js/main.d3a14ecb.js",
     "index.html": "/mini-online-shop/index.html",
     "main.e21112d8.css.map": "/mini-online-shop/static/css/main.e21112d8.css.map",
-    "main.99d56924.js.map": "/mini-online-shop/static/js/main.99d56924.js.map"
+    "main.d3a14ecb.js.map": "/mini-online-shop/static/js/main.d3a14ecb.js.map"
   },
   "entrypoints": [
     "static/css/main.e21112d8.css",
-    "static/js/main.99d56924.js"
+    "static/js/main.d3a14ecb.js"
   ]
 }
