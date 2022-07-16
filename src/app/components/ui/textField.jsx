@@ -24,9 +24,7 @@ const TextField = ({ label, type, name, id }) => {
                     name={name}
                     value={quantity}
                     onChange={handleChange}
-                    style={{
-                        width: "75px"
-                    }}
+                    className="form-control form-control-sm"
                 />
             </div>
         </div>
