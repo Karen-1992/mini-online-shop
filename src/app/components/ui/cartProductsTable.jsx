@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Table from "../common/table";
-import Counter from "../common/counter";
+// import Counter from "../common/counter";
 import RemoveButton from "../common/removeButton";
 import Amount from "./amount";
+import TextField from "./textField";
 
 const CartProductsTable = ({
     products,
@@ -28,13 +29,24 @@ const CartProductsTable = ({
             path: "quantity",
             name: "Кол-во",
             component: (product) => (
-                <Counter
-                    onDecrement={() => onDecrement(product.ID)}
-                    onIncrement={() => onIncrement(product.ID)}
-                    quantity={product.quantity}
+                <TextField
+                    name="quantity"
+                    type="number"
+                    id={product.ID}
                 />
             )
         },
+        // quantity2: {
+        //     path: "quantity",
+        //     name: "Кол-во",
+        //     component: (product) => (
+        //         <Counter
+        //             onDecrement={() => onDecrement(product.ID)}
+        //             onIncrement={() => onIncrement(product.ID)}
+        //             quantity={product.quantity}
+        //         />
+        //     )
+        // },
         price: {
             path: "PRICE",
             name: "Цена/шт."

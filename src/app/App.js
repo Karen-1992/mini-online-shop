@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
     return (
-        <div className="container-xxl">
+        <div className="container-xxl shadow">
             <ProductsLoader>
                 <Main />
             </ProductsLoader>

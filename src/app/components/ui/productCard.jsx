@@ -6,7 +6,6 @@ import Price from "../common/price";
 
 const ProductCard = ({ product, onAddToCart, formType }) => {
     const { ID, PICTURE, NAME, SKU } = product;
-
     const skuArr = SKU && Object.values(SKU);
     const [data, setData] = useState({
         sku: SKU && skuArr[0].ID
@@ -62,7 +61,10 @@ const ProductCard = ({ product, onAddToCart, formType }) => {
                 )}
             </div>
             <div className="d-flex flex-column text-center justify-content-around">
-                <Price {...product} />
+                <Price
+                    {...product}
+                    selectedData={data}
+                />
                 <AddButton onAddToCart={() => handleaddToCart(product)} />
             </div>
         </div>

@@ -49,6 +49,17 @@ const cartSlice = createSlice({
             state.entities[index].quantity += 1;
             localStorageService.setCartItems(state.entities);
         },
+        quantityChanged: (state, action) => {
+            const index = state.entities.findIndex(
+                (p) => p.ID === action.payload.id
+            );
+            if (action.payload.quantity !== 0) {
+                state.entities[index].quantity = action.payload.quantity;
+            } else {
+                state.entities[index].quantity = 1;
+            }
+            localStorageService.setCartItems(state.entities);
+        },
         cartToggled: (state) => {
             state.isVisible = !state.isVisible;
         },
@@ -66,6 +77,7 @@ const {
     cartProductRemoved,
     cartProductIncremented,
     cartProductDecremented,
+    quantityChanged,
     cartToggled,
     cartCleared
 } = actions;
@@ -87,6 +99,10 @@ export const incrementQuantity = (id) => (dispatch) => {
     dispatch(cartProductIncremented(id));
 };
 
+export const changeQuantity = ({ quantity, id }) => (dispatch) => {
+    dispatch(quantityChanged({ quantity, id }));
+};
+
 export const clearCart = () => (dispatch) => {
     dispatch(cartCleared());
     localStorageService.clearCart();
@@ -95,6 +111,10 @@ export const clearCart = () => (dispatch) => {
 export const getCartList = () => (state) => state.cart.entities;
 export const getCartStatus = () => (state) => state.cart.isVisible;
 export const getCartListQuantity = () => (state) => state.cart.cartQuantity;
+export const getQuantityById = (id) => (state) => {
+    const product = state.cart.entities.find(item => item.ID === id);
+    return product.quantity;
+};
 export const getCartListAmountPrice = () => (state) => {
     let amount = 0;
     for (const item of state.cart.entities) {
