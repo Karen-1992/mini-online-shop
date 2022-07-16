@@ -6,14 +6,14 @@ import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
     return (
-        <>
+        <div className="container-xxl">
             <ProductsLoader>
                 <Main />
             </ProductsLoader>
             <div>
                 <ToastContainer />
             </div>
-        </>
+        </div>
     );
 };
 

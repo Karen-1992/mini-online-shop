@@ -25,7 +25,7 @@ const Products = () => {
     const [data, setData] = useState({
         pageSize: 10
     });
-    const [selectedFilterType, setSelectedFilterType] = useState();
+    const [selectedFilterTypes, setSelectedFilterTypes] = useState([]);
     const [pageFormType, setPageFormType] = useState(pageForms[0].name);
     const dispatch = useDispatch();
     const products = useSelector(getProducts());
@@ -57,20 +57,26 @@ const Products = () => {
     };
     useEffect(() => {
         setCurrentPage(1);
-    }, [selectedFilterType]);
+    }, [selectedFilterTypes]);
     const handleFilterTypesSelect = (item) => {
-        setSelectedFilterType(item);
+        const itemIndex = selectedFilterTypes.findIndex(el => el.NAME === item.NAME);
+        if (itemIndex !== -1) {
+            setSelectedFilterTypes(prevState => prevState.filter(el => el.NAME !== item.NAME));
+        } else {
+            setSelectedFilterTypes(prevState => (
+                [
+                    ...prevState,
+                    item
+                ]
+            ));
+        }
     };
     const clearFilter = () => {
-        setSelectedFilterType();
+        setSelectedFilterTypes([]);
     };
     function filterProducts(data) {
-        const filteredProducts = selectedFilterType
-            ? data.filter(
-                (product) =>
-                    JSON.stringify(product[selectedFilterType.TYPE]) ===
-                    JSON.stringify(selectedFilterType.NAME)
-            )
+        const filteredProducts = selectedFilterTypes
+            ? data.filter(product => selectedFilterTypes.every(t => t.NAME === product[t.TYPE]))
             : data;
         return filteredProducts;
     }
@@ -91,7 +97,7 @@ const Products = () => {
     const pageSizeOptions = getPageSizeOptions();
     return (
         <div className="d-flex">
-            <div className="position-relative w-100">
+            <div className="position-relative">
                 <CartToggleButton
                     value={cartQuantity}
                     onToggle={handleToggleCart}
@@ -114,7 +120,7 @@ const Products = () => {
                             onClick={clearFilter}
                         >
                             {" "}
-                            Очистить
+                            Очистить фильтр
                         </button>
                         <PageFormSwitcher
                             forms={pageForms}
@@ -124,9 +130,7 @@ const Products = () => {
                     </div>
                     <div className="d-flex justify-content-between p-2">
                         <GroupList
-                            selectedItem={
-                                selectedFilterType && selectedFilterType.NAME
-                            }
+                            selectedItems={selectedFilterTypes}
                             items={filterTypes}
                             onItemSelect={handleFilterTypesSelect}
                         />

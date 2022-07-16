@@ -38,19 +38,22 @@ const Cart = () => {
             }
         >
             <div className="">
-                <div className="d-flex justify-content-between px-3 py-1">
-                    <h3>Корзина</h3>
+                <div className="d-flex justify-content-end px-3 py-1">
                     {cartItemsQuantity > 0 && (
                         <ClearCartButton onClick={handleClearCart} />
                     )}
                 </div>
-                <CartProductsTable
-                    sorting={false}
-                    products={cartList}
-                    onDecrement={handleDecrement}
-                    onIncrement={handleIncrement}
-                    onRemove={handleRemove}
-                />
+                {cartItemsQuantity !== 0 ? (
+                    <CartProductsTable
+                        sorting={false}
+                        products={cartList}
+                        onDecrement={handleDecrement}
+                        onIncrement={handleIncrement}
+                        onRemove={handleRemove}
+                    />
+                ) : (
+                    <h1 className="text-center">Корзина пуста</h1>
+                )}
             </div>
         </div>
     );

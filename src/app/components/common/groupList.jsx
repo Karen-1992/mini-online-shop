@@ -6,7 +6,7 @@ const GroupList = ({
     valueProperty,
     contentProperty,
     onItemSelect,
-    selectedItem
+    selectedItems
 }) => {
     return (
         <div className="">
@@ -14,9 +14,8 @@ const GroupList = ({
                 <span
                     key={item[valueProperty]}
                     className={
-                        "badge text-dark m-1 p-2 border border-2 " +
-                        (item[contentProperty] === selectedItem
-                            ? " border-danger "
+                        "badge opacity-50 text-dark m-1 p-2 border border-2 " +
+                        (selectedItems.find(el => el.NAME === item[contentProperty]) ? " border-danger opacity-100 "
                             : " ")
                     }
                     onClick={() => onItemSelect(item)}
@@ -37,7 +36,7 @@ GroupList.propTypes = {
     valueProperty: PropTypes.string.isRequired,
     contentProperty: PropTypes.string.isRequired,
     onItemSelect: PropTypes.func,
-    selectedItem: PropTypes.string
+    selectedItems: PropTypes.array
 };
 
 export default GroupList;
