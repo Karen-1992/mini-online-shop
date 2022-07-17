@@ -75,8 +75,8 @@ const Products = () => {
         setSelectedFilterTypes([]);
     };
     function filterProducts(data) {
-        const filteredProducts = selectedFilterTypes
-            ? data.filter(product => selectedFilterTypes.every(t => t.NAME === product[t.TYPE]))
+        const filteredProducts = selectedFilterTypes.length > 0
+            ? data.filter(product => selectedFilterTypes.some(t => t.NAME === product[t.TYPE]))
             : data;
         return filteredProducts;
     }
@@ -84,7 +84,7 @@ const Products = () => {
     const count = filteredProducts.length;
     function getPageSizeOptions() {
         const optionsArr = [];
-        const optionsQuantity = Math.ceil(count / 10);
+        const optionsQuantity = Math.ceil(products.length / 10);
         for (let i = 1; i <= optionsQuantity; i++) {
             optionsArr.push({
                 label: 10 * i,
@@ -136,6 +136,8 @@ const Products = () => {
                         />
                     </div>
                     <div className="container-fluid">
+                        <span>{`Показано ${productsCrop.length} из ${filteredProducts.length}`}</span>
+
                         {pageFormType === "grid" && (
                             <ProductsGrid
                                 products={productsCrop}
